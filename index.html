@@ -1,27 +1,84 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/86fe9e5cd5.js" crossorigin="anonymous"></script>
   </head>
+
+
+
   <body>
-    <script>
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+    <header>Twiddler</header>
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+    <div class="interface">
+      <button class="home"><i class="fas fa-home"></i> Home </button>
+      <button class="refresh"><i class="fab fa-twitter"></i> New Tweets! </button>
+    </div>
 
-      });
+    <main>
 
-    </script>
+      <script>
+
+        $(document).ready(function(){
+          var $main = $('main');
+          $main.html('');
+
+          var index = streams.home.length - 1;
+          while(index >= 0){
+            var tweet = streams.home[index];
+            var $tweet = $('<div class="tweet"></div>');
+            $tweet.html(`<div class='user'>@${tweet.user}</div>` + tweet.message + "<div class='timeMark'>" + new Date ($.now()) + "</div>");
+            $tweet.appendTo($main);
+            index -= 1;
+          }
+
+
+          //Buttons
+          $('.home').click(() => {
+            $('div').show(600)
+          })
+
+          $('.refresh').click(() => {
+            refreshTweets();
+          });
+
+          $('.user').click(() => {
+            $(`.tweet:not(:contains(${tweet.user}))`).hide(300)
+          })
+
+          function refreshTweets() {
+            for (let i = 0; i < streams.home.length; i++) {
+              let newTweets = streams.home[i];
+              var $tweet = $('<div class="tweet"></div>');
+              $tweet.html("<div class='user'>" + '@' + newTweets.user + "</div>" + newTweets.message + "<div class='timeMark'>" + new Date ($.now()) + "</div>");
+              $tweet.prependTo($main);
+
+            }
+          }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
+
+      </script>
+
+    </main>
+
   </body>
 </html>

@@ -1,0 +1,70 @@
+
+
+body {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-areas: "header header header"
+                       "interface interface interface"
+                       ". main .";
+  grid-column-gap: 1.5em;
+
+
+}
+
+header {
+  grid-area: header;
+  background: #1da1f2;
+  color: white;
+  display: flex;
+  justify-content: center;
+  font-size: 100px;
+  font-family: "Comic Sans MS"
+}
+
+.interface {
+  grid-area: interface;
+  background: #1a94e0;
+  font-family: "Comic Sans MS";
+  text-align: center;
+}
+
+button {
+  background: #1da1f2;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+
+main {
+  grid-area: main;
+  background: white;
+  font-family: "Comic Sans MS";
+  font-size: 20px;
+  text-align: center;
+}
+
+.tweet {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: solid;
+  color: #1da1f2;
+  background-color: white;
+}
+
+.user {
+  color: black;
+}
+
+.timeMark {
+  color: black;
+  font-size: 10px;
+  margin-top: 10px;
+}
